@@ -7,13 +7,10 @@
 		<script type="text/javascript" src="js/class/asteroid.js"></script>
 	</head>
 	<body>
-		<!--<img id="nave" src="img/a.png" />
-		<canvas id="space">
-		</canvas>-->
 		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript">
-
-
+		
+		//Creatting Canvas
 		var CANVAS_WIDTH = 800;
 		var CANVAS_HEIGHT = 600;
 
@@ -22,79 +19,73 @@
 		var canvas = canvasElement.get(0).getContext("2d");
 		canvasElement.appendTo('body');
 
-		var FPS = 30;
+		//Creatting Refresh time
+		var FPS = 60;
 		setInterval(function() {
   			update();
   			draw();
 		}, 1000/FPS);
 
-		var textX = 50;
-		var textY = 50;
 
+		//Multi-movement
+		var keys = {};
+
+		$(document).keydown(function (e) {
+   			keys[e.which] = true;
+    		starShip.move();
+		});
+
+		$(document).keyup(function (e) {
+    		delete keys[e.which];
+    		starShip.move();
+		});
+
+		//This function will be used for move the asteroids and others
 		function update() {
-  			textX += 1;
- 			textY += 1;
+  		//	textX += 1;
+ 		//	textY += 1;
 		}
 
+		//This will be used for recreated the canvas
 		function draw(){
 			canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 			starShip.draw();
 		}
 
+
+		//Object for play
 		var starShip = {
   			color: "#00A",
-  			x: 220,
-  			y: 270,
+  			x: CANVAS_WIDTH/2,
+  			y: CANVAS_HEIGHT/2,
   			width: 32,
   			height: 32,
   			draw: function() {
     			canvas.fillStyle = this.color;
     			canvas.fillRect(this.x, this.y, this.width, this.height);
+  			},
+  			move: function(){
+  				for (var i in keys) {
+        		if (!keys.hasOwnProperty(i)) continue;
+
+				if (i == 40){
+					starShip.y +=5;
+				}
+				if (i == 38){
+					starShip.y -=5;
+				}
+				if (i == 37){
+					starShip.x -=5;
+				}
+				if (i == 39){
+					starShip.x +=5;
+				}
+				if (i == 32){
+					console.log("Peg Peg");
+				}
+    		}
   			}
 		}
-
-		//var mapa = document.getElementById("space");
-		//mapa.context.drawImage();
-
-
-
-/*
-		var canvas=document.getElementById("space");
-		var contex=canvas.getContext("2d");
-		var nave=document.getElementById("nave");
-		console.log(nave);
-		contex.drawImage(nave,10,10,15,10);
-		contex.putImageData(nave, 20, 20);
-
-		nave1.moveTo(20,90);
-
-		contex.translate(20,90);
-*/
-/*
-		var ratio = 1;
-
-        if(nave.width > maxWidth)
-            ratio = maxWidth / nave.width;
-        else if(nave.height > maxHeight)
-            ratio = maxHeight / nave.height;
-
-        canvasCopy.width = nave.width;
-        canvasCopy.height = nave.height;
-        copyContext.drawImage(nave, 0, 0);
-
-        canvas.width = nave.width * ratio;
-        canvas.height = nave.height * ratio;
-        contex.drawImage(canvasCopy, 0, 0, canvasCopy.width, canvasCopy.height, 0, 0, canvas.width, canvas.height);
-*/
-
-
-
-
-
-
-
-
-
 
 		</script>
 	</body>
