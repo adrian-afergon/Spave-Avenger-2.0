@@ -1,0 +1,14 @@
+body{
+	margin:0px;
+}
+
+#space{
+	background-color: black;
+	height: 100%;
+	width:100%;
+}
+
+img{
+	height: 24px;
+	width:24px;
+}

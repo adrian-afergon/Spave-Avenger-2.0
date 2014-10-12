@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Space Avenger 2.0</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script type="text/javascript" src="js/class/element.js"></script>
+		<script type="text/javascript" src="js/class/asteroid.js"></script>
+	</head>
+	<body>
+		<!--<img id="nave" src="img/a.png" />
+		<canvas id="space">
+		</canvas>-->
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript">
+
+
+		var CANVAS_WIDTH = 400;
+		var CANVAS_HEIGHT = 320;
+
+		var canvasElement = $("<canvas width='" + CANVAS_WIDTH + 
+                      "' height='" + CANVAS_HEIGHT + "'></canvas>");
+		var canvas = canvasElement.get(0).getContext("2d");
+		canvasElement.appendTo('body');
+
+		var FPS = 30;
+		setInterval(function() {
+  			update();
+  			draw();
+		}, 1000/FPS);
+
+		var textX = 50;
+		var textY = 50;
+
+		function update() {
+  			textX += 1;
+ 			textY += 1;
+		}
+
+		function draw(){
+			canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+			canvas.fillStyle = "#000"; // Set color to black
+  			canvas.fillText("Sup Bro!", textX, textY);
+		}
+
+		//var mapa = document.getElementById("space");
+		//mapa.context.drawImage();
+
+
+
+/*
+		var canvas=document.getElementById("space");
+		var contex=canvas.getContext("2d");
+		var nave=document.getElementById("nave");
+		console.log(nave);
+		contex.drawImage(nave,10,10,15,10);
+		contex.putImageData(nave, 20, 20);
+
+		nave1.moveTo(20,90);
+
+		contex.translate(20,90);
+*/
+/*
+		var ratio = 1;
+
+        if(nave.width > maxWidth)
+            ratio = maxWidth / nave.width;
+        else if(nave.height > maxHeight)
+            ratio = maxHeight / nave.height;
+
+        canvasCopy.width = nave.width;
+        canvasCopy.height = nave.height;
+        copyContext.drawImage(nave, 0, 0);
+
+        canvas.width = nave.width * ratio;
+        canvas.height = nave.height * ratio;
+        contex.drawImage(canvasCopy, 0, 0, canvasCopy.width, canvasCopy.height, 0, 0, canvas.width, canvas.height);
+*/
+
+
+
+
+
+
+
+
+
+
+		</script>
+	</body>
+</html>
